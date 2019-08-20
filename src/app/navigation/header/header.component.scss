@@ -1,0 +1,52 @@
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover, a:active{
+    color: lightgray;
+}
+
+li {
+    float: left;
+    display: block;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navigation-items{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+}
+
+.application-logo{
+    margin: 25px;
+    display: block;
+}
+
+mat-toolbar{
+    border-radius: 3px;
+}
+
+@media (max-width: 768px){
+    mat-toolbar{
+        border-radius: 0px;
+    }
+    .application-logo{
+        display: none;
+    }
+}

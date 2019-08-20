@@ -1,0 +1,62 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+  
+      <button mat-icon-button (click)="onToggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+  
+      <div class="application-logo">
+        <a mat-button routerLink="/home">Home</a>
+      </div>
+  
+      <!-- This fills the remaining space of the current row -->
+      <span class="example-fill-remaining-space"></span>
+      <form [formGroup]="stateForm">
+        <mat-form-field>
+          <input type="text" matInput placeholder="States Group" formControlName="stateGroup" required [matAutocomplete]="autoGroup">
+            <mat-autocomplete #autoGroup="matAutocomplete">
+              <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+                <mat-option *ngFor="let name of group.names" [value]="name">
+                  {{name}}
+                </mat-option>
+            </mat-optgroup>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+  
+      <a mat-button>
+        <mat-icon>search</mat-icon>
+      </a>
+  
+      <ng-container *ngIf="IsLoggedIn(); then userloggedIn; else userloggedOut">
+    </ng-container>
+  
+      <ng-template #userloggedIn>
+        <a mat-button (click)="Logout()" routerLink="/login">Logout</a> 
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>dialpad</mat-icon>
+              <span>Redial</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>voicemail</mat-icon>
+              <span>Check voicemail</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>notifications_off</mat-icon>
+              <span>Disable alerts</span>
+            </button>
+          </mat-menu>
+      </ng-template>
+  
+      <ng-template #userloggedOut>
+          <a mat-button routerLink="/register">Register</a>
+          <a mat-button routerLink="/login">Login</a> 
+      </ng-template>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <router-outlet></router-outlet>
